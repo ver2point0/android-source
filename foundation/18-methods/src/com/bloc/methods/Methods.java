@@ -32,12 +32,7 @@ public class Methods extends Object {
 	 * @return the logical opposite of the original
 	 */
 	public boolean giveMeTheOpposite(boolean original) {
-		/************************************************
-		 * Your work goes here
-		 ************************************************/
-
-		// You are free to modify the return statement
-		return false;
+		return !original;
 	}
 
 	/*
@@ -57,9 +52,9 @@ public class Methods extends Object {
 	 * @return nothing
 	 */
 	public void flipTheSign(int[] numbers) {
-		/************************************************
-		 * Your work goes here
-		 ************************************************/
+		for (int i = 0; i < numbers.length; i++) {
+			numbers[i] = numbers[i] * -1;
+		}
 	}
 
 
@@ -87,12 +82,13 @@ public class Methods extends Object {
 	 * @return an array of booleans
 	 */
 	public boolean[] boolsRule(int floor, int[] someNumbers) {
-		/************************************************
-		 * Your work goes here
-		 ************************************************/
-
-		// You are free to modify the return statement
-		return new boolean [0];
+		boolean[] myBoolsRule = new boolean[someNumbers.length];
+		for (int k = 0; k < someNumbers.length; k++) {
+			if (floor <= someNumbers[k]) {
+				myBoolsRule[k] = true;
+			}
+		}
+		return myBoolsRule;
 	}
 
 	/*
@@ -114,12 +110,20 @@ public class Methods extends Object {
 	 * @return an array of length 2: {min, max}
 	 */
 	public int[] getMinAndMax(int[] someNumbers) {
-		/************************************************
-		 * Your work goes here
-		 ************************************************/
-
-		// You are free to modify the return statement
-		return new int[2];
+		int[] myMinAndMax = new int[2];
+		int max = someNumbers[0];
+		int min = someNumbers[0];
+		for (int j = 0; j < someNumbers.length; j++) {
+			if (someNumbers[j] > max) {
+				max = someNumbers[j];
+			}
+			else if (someNumbers[j] < min) {
+				min = someNumbers[j];
+			}
+		}
+		myMinAndMax[0] = min;
+		myMinAndMax[1] = max;
+		return myMinAndMax;
 	}
 
 
