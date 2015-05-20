@@ -12,30 +12,30 @@ public class WorstPractices extends Object {
 	/************************************************/
 
 	public static void main(String [] args) {
-	int MAGIC_NUMBER = WorstPractices.animals(false);
+	final int MAGIC_NUMBER = WorstPractices.animals(false);
 	MAGIC_NUMBER *= 5;
-	if (MAGIC_NUMBER > 18) {
-	while(MAGIC_NUMBER > 0)
-	{
-	MAGIC_NUMBER--;
+		if (MAGIC_NUMBER > 18) {
+			while(MAGIC_NUMBER > 0) {
+				MAGIC_NUMBER--;
+			}
+		}
 	}
+	
+	/*
+	animals()
+	this method takes in a single parameter, booleanSeed, and calculates a magic number
+	booleanSeed: a seed which helps generate the magic number
+	returns: sparklesFairy * aInt
+	*/
+	
+	private static int animals(boolean booleanSeed) {
+		int aInt = booleanSeed ? 34 : 21;
+		float sparklesFairy = .5f;
+		for (int brown = 0; brown < aInt; brown++) { 
+			sparklesFairy *= aInt;
+		} 
+		return (int) sparklesFairy * aInt;
 	}
-	}
-
-// animals
-// this method takes in a single parameter, yeswellheresthething. Using a very elaborate and complex algorithm, it calculate a magic number
-// yeswellheresthething: a seed which helps generate the magic number
-// returns: a magical number
-private static int animals(boolean yeswellheresthething)
-{
-		/*
-			Start off with one of these
-		*/
-	int aInt = yeswellheresthething ? 34 : 21;
-	float sparklesfairy = .5f;
-	for (int brown = 0; brown < aInt; brown++) { sparklesfairy *= aInt;
-	} return (int) sparklesfairy * aInt;
-}
 
 	/************************************************
 	 *	ASSIGNMENT
