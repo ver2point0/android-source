@@ -299,7 +299,7 @@ class Dog {
 	 * @return nothing
 	 */
 	 void cutHair() {
-		 if (mHairLength > 0) {
+		 if (mHairLength > HAIR_CUT_LENGTH) {
 			 mHairLength -= HAIR_CUT_LENGTH;
 		 }
 	 }
