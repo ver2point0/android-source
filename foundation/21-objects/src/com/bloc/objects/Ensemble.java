@@ -14,6 +14,10 @@ class Ensemble extends Object {
 	 *
 	 * @param artists variable length artists (Artist... artists)
 	 */
+	 Ensemble(Artist[] artists) {
+		mArtists = artists;
+		mName = artists[0].mFirstName + artists[0].mLastName;
+	 }
 	/************************************************
 	 *	ASSIGNMENT:
 	 *	Create the first Ensemble constructor
@@ -30,6 +34,13 @@ class Ensemble extends Object {
 	 * @param name the name of the group (String)
 	 * @param artists variable length artists (Artist... artists)
 	 */
+	 Ensemble(String name, Artist[] artists) {
+		 if (name == null) {
+			name = artists[0].mFirstName + artists[0].mLastName;	
+		 }
+		 mName = name;
+		 mArtists = artists;
+	 }
 	/************************************************
 	 *	ASSIGNMENT:
 	 *	Create the second Ensemble constructor
