@@ -11,6 +11,7 @@ class PopSong extends Song {
 	 *				 year and number of weeks on billboard
 	 */
 	 PopSong() {
+	 	super();
 	 }
 	/************************************************
 	 *	ASSIGNMENT:
