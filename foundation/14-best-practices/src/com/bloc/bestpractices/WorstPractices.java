@@ -12,29 +12,27 @@ public class WorstPractices extends Object {
     /************************************************/
 
     public static void main(String [] args) {
-        int magicNumber = WorstPractices.animals(false);
+        int magicNumber = WorstPractices.getMagicNumber(false);
         magicNumber *= 5;
         if (magicNumber > 18) {
-            while(magicNumber > 0)    {
-                magicNumber--;
-            }
+            magicNumber = 0;
        }
     }
 
     /**
-     * animals()
+     * getMagicNumber()
      * this method takes in a single parameter, booleanSeed.
      * Using a very elaborate and complex algorithm, it calculates a magic number
      * booleanSeed: a seed which helps generate the magic number and returns a magic number
     **/
-    private static int animals(boolean booleanSeed) {
+    private static int getMagicNumber(boolean booleanSeed) {
 
-        int aInt = booleanSeed ? 34 : 21;
-        float sparklesFairy = .5f;
-        for (int brown = 0; brown < aInt; brown++) { 
-            sparklesFairy *= aInt;
+        int booleanMultiplier = booleanSeed ? 34 : 21;
+        float startNum = .5f;
+        for (int i = 0; i < booleanMultiplier; i++) { 
+            startNum *= booleanMultiplier;
         } 
-        return (int) sparklesFairy * aInt;
+        return (int) startNum * booleanMultiplier;
     }
 
     /************************************************
