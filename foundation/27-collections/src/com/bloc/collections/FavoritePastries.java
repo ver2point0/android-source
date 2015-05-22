@@ -24,12 +24,10 @@ public class FavoritePastries {
 	 *	Use a HashMap to store the relationship
 	 *	between rating and pastry: HashMap<Integer, List<Pastry>>
 	/************************************************/
-
+	private HashMap<Pastry, Integer> mMapPastry;
 
 	public FavoritePastries() {
-		/************************************************
- 	 	 *	WORK HERE
-		/************************************************/
+		mMapPastry = new HashMap<Pastry, Integer>();
 	}
 
 	/* 
@@ -48,9 +46,7 @@ public class FavoritePastries {
 	 * @return nothing
 	 */
 	public void addPastry(Pastry pastry, int rating) {
-		/************************************************
- 	 	 *	WORK HERE
-		/************************************************/
+		mMapPastry.put(pastry, rating);
 	}
 
 	/* 
@@ -66,9 +62,9 @@ public class FavoritePastries {
 	 *		   false otherwise
 	 */
 	public boolean removePastry(Pastry pastry) {
-		/************************************************
- 	 	 *	WORK HERE, you must modify the return value
-		/************************************************/
+		if (mMapPastry.containsKey(pastry)) {
+			return mMapPastry.remove(pastry) > 0;
+		}
 		return false;
 	}
 
@@ -87,9 +83,9 @@ public class FavoritePastries {
 	 *		   -1 if not found among FavoritePastries
 	 */
 	public int getRatingForPastry(Pastry pastry) {
-		/************************************************
- 	 	 *	WORK HERE, you must modify the return value
-		/************************************************/
+		if (mMapPastry.containsKey(pastry)) {
+			return mMapPastry.get(pastry);
+		}
 		return -1;
 	}
 
@@ -110,10 +106,13 @@ public class FavoritePastries {
 	 *         found
 	 */
 	public Collection<Pastry> getPastriesForRating(int rating) {
-		/************************************************
- 	 	 *	WORK HERE, you must modify the return value
-		/************************************************/
-		return null;
+		ArrayList<Pastry> pastryRatings = new ArrayList<Pastry>();
+		for (Pastry pastry : mMapPastry.keySet()) {
+			if (mMapPastry.get(pastry) == rating) {
+				pastryRatings.add(pastry);
+			}
+		}
+		return pastryRatings;
 	}
 
 }
