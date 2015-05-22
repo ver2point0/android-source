@@ -1,16 +1,18 @@
 package com.bloc.securitypackages.apples;
+import com.bloc.securitypackages.colors.Red;
 
 /************************************************
  *	YOU MAY MODIFY THIS FILE AND/OR ITS LOCATION
 /************************************************/
 
-class Macintosh extends Apple {
+public class Macintosh extends Apple {
 
-	Macintosh() {
-		super(Macintosh.class.getSimpleName(), 200, new Red(), 0.14d);
+	public Macintosh() {
+		//super(Macintosh.class.getSimpleName(), 200, new Red(), 0.14d);
+		super();
 	}
 
-	void bite() {
+	public void bite() {
 		setWeight(getWeight() - 0.01d);
 	}
 
