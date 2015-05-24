@@ -46,8 +46,28 @@ public class FavoritePastries {
 	 * @return nothing
 	 */
 	public void addPastry(Pastry pastry, int rating) {
-		List<Pastry> tPastry = mMapPastry.get(rating);
-		mMapPastry.put(rating, tPastry);
+		boolean foundPastry = false;
+		for (Integer key : mMapPastry.keySet()) {
+			List<Pastry> pList = mMapPastry.get(key);
+			if (pList.contains(pastry) && rating != key) {
+				pList.remove(pastry);
+				List<Pastry> newPList = mMapPastry.get(rating);
+				newPList.add(pastry);
+				mMapPastry.put(rating, newPList);
+			return;
+			}
+			else if (pList.contains(pastry)) {
+				foundPastry = true;
+			}
+			if (!foundPastry) {
+				List<Pastry> listP = mMapPastry.get(rating);
+				if (listP == null) {
+					listP = new ArrayList<Pastry>();
+					listP.add(pastry);
+					mMapPastry.put(rating, listP);
+				}
+			}
+		}
 	}
 
 	/* 
@@ -63,14 +83,13 @@ public class FavoritePastries {
 	 *		   false otherwise
 	 */
 	public boolean removePastry(Pastry pastry) {
-		List<Pastry> tPastry = mMapPastry.get(pastry);
-		if (tPastry != null) {
-			tPastry = mMapPastry.remove(pastry);
-			return true;
+		for (Integer key : mMapPastry.keySet()) {
+			List<Pastry> pList = mMapPastry.get(key);
+			if (pList.contains(pastry)) {
+				return pList.remove(pastry);
+			}
 		}
-		else {
-			return false;
-		}
+		return false;
 	}
 
 	/* 
@@ -88,14 +107,10 @@ public class FavoritePastries {
 	 *		   -1 if not found among FavoritePastries
 	 */
 	public int getRatingForPastry(Pastry pastry) {
-		Set pastrySet = (Set) mMapPastry.entrySet();
-		Iterator<?> iMap = pastrySet.iterator();
-		while (iMap.hasNext()) {
-			Map.Entry map = (Map.Entry) iMap.next();
-			Integer kValue = (Integer) map.getKey();
-			Pastry pValue = (Pastry) map.getValue();
-			if (pastry == pValue) {
-				return  kValue;
+		for (Integer key : mMapPastry.keySet()) {
+			List<Pastry> pList = mMapPastry.get(key);
+			if (mMapPastry.containsKey(pastry)) {
+				return key;
 			}
 		}
 		return -1;
@@ -118,18 +133,10 @@ public class FavoritePastries {
 	 *         found
 	 */
 	public Collection<Pastry> getPastriesForRating(int rating) {
-		Set pastrySet = (Set) mMapPastry.entrySet();
-		Iterator<?> iMap = pastrySet.iterator();
-		while (iMap.hasNext()) {
-			Map.Entry map = (Map.Entry) iMap.next();
-			Integer kValue = (Integer) map.getKey();
-			if (kValue == rating) {
-				Set kSet = mMapPastry.keySet();
-				return  kSet;
-			}
-		}
-		Set<Pastry> eSet = Collections.emptySet();
-		return eSet;
+		List<Pastry> pList = mMapPastry.get(rating);
+		if (pList == null)
+			pList = new ArrayList<Pastry>();
+		Set<Pastry> sPastry = new HashSet<Pastry>(pList);
+		return sPastry;
 	}
-
 }
