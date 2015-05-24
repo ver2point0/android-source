@@ -1,5 +1,8 @@
 package com.bloc.singletons;
 
+import java.util.HashSet;
+import java.util.Iterator;
+
 /************************************************
  *	ASSIGNMENT:
  *	Populate this class with the defined methods.
@@ -9,6 +12,12 @@ package com.bloc.singletons;
 /************************************************/
 
 public class Speakerphone extends Object {
+	private static Speakerphone sSpeakPhone;
+	private static HashSet<Listener> hSpeakSet = new HashSet<Listener>();
+	private static HashSet<Listener> hAllListeners = hSpeakSet;
+
+	private Speakerphone() {
+	}
 	/*
 	 * get
 	 *
@@ -19,6 +28,12 @@ public class Speakerphone extends Object {
 	 *	Implement the get method
 	/************************************************/
 
+	public static Speakerphone get() {
+		if (sSpeakPhone == null) {
+			sSpeakPhone = new Speakerphone();
+		}
+		return sSpeakPhone;
+	}
 	/*
 	 * addListener
 	 *
@@ -31,7 +46,9 @@ public class Speakerphone extends Object {
 	 *	ASSIGNMENT:
 	 *	Implement the addListener method
 	/************************************************/
-
+	public void addListener(Listener listener) {
+		hSpeakSet.add(listener);
+	}
 	/*
 	 * removeListener
 	 *
@@ -44,7 +61,9 @@ public class Speakerphone extends Object {
 	 *	ASSIGNMENT:
 	 *	Implement the removeListener method
 	/************************************************/
-
+	public void removeListener(Listener listener) {
+		hSpeakSet.remove(listener);
+	}
 	/*
 	 * removeAll
 	 *
@@ -56,7 +75,9 @@ public class Speakerphone extends Object {
 	 *	ASSIGNMENT:
 	 *	Implement the removeAll method
 	/************************************************/
-
+	public void removeAll() {
+		hAllListeners.removeAll(hSpeakSet);
+	}
 	/*
 	 * contains
 	 *
@@ -71,7 +92,12 @@ public class Speakerphone extends Object {
 	 *	ASSIGNMENT:
 	 *	Implement the contains method
 	/************************************************/	
-
+	public boolean contains(Listener listener) {
+		if (hSpeakSet.contains(listener)) {
+			return true;
+		}
+		return false;
+	}
 	/*
 	 * shoutMessage
 	 *
@@ -84,7 +110,12 @@ public class Speakerphone extends Object {
 	 *	ASSIGNMENT:
 	 *	Implement the shoutMessage method
 	/************************************************/
-
+	public void shoutMessage(Talker talker) {
+		Iterator<Listener> iHear = hSpeakSet.iterator();
+		while (iHear.hasNext()) {
+			iHear.next().onMessageReceived(talker.getMessage());
+		}
+	}
 	/*
 	 * shoutMessage
 	 *
@@ -103,5 +134,11 @@ public class Speakerphone extends Object {
 	 *	ASSIGNMENT:
 	 *	Implement the shoutMessage method
 	/************************************************/
-
+	public void shoutMessage(Talker talker, Class<?> cls) {
+		Class<?> cl = cls.getClass();
+		Iterator<Listener> iHear = hSpeakSet.iterator();
+		if (cl.isAssignableFrom(cls)) {
+			iHear.next().onMessageReceived(talker.getMessage());
+		}
+	}
 }
